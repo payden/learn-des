@@ -41,10 +41,13 @@ int main(int argc, char **argv) {
 	    for (z = 0; z < 28; z++) {
 	    	bit_set(key_join, (z + 28) + 1, bit_get(key_right, z + 1));
 	    }
-	    fprintf(stderr, "Permuted choice for round: %u==%02x%02x%02x%02x%02x%02x\n", x + 1, key_join[0],
+	    fprintf(stderr, "Rejoined after rotate for round: %u==%02x%02x%02x%02x%02x%02x\n", x + 1, key_join[0],
 	    		key_join[1], key_join[2], key_join[3], key_join[4], key_join[5]);
 	    memcpy(subkeys[x], key_join, 6);
 	    permute(subkeys[x], permuted_choice2, 48);
+	    fprintf(stderr, "Permuted choice for subkey %u: %02x%02x%02x%02x%02x%02x\n", x + 1,
+		subkeys[x][0], subkeys[x][1], subkeys[x][2], subkeys[x][3], subkeys[x][4],
+		subkeys[x][5]);
     }
 
     return 0;
